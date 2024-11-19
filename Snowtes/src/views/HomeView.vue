@@ -1,5 +1,8 @@
 <template>
   <main>
-    <div>this is a test</div>
+    <div 
+      class="text-blue-300">
+      Hello World tailwind
+    </div>
   </main>
 </template>
