@@ -1,7 +1,6 @@
 <template>
   <main>
-    <div 
-      class="text-blue-300">
+    <div class="text-slate-500">
       Hello World tailwind
     </div>
   </main>

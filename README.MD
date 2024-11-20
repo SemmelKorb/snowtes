@@ -7,6 +7,7 @@ PostgreSQL
 Style of the Website
 Collerpattern: something with lightblue, white and gray/lightgray
 // if there is a dark mode -> lightblue, black and gray/lightgray
+take a snowflake with a page of paper as the logo
 
 Functions
 Make own note
