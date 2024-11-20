@@ -1,4 +1,7 @@
 body {
     margin: 0;
-    background: #eff6ff;
+    padding: 0;
+    background: #f8fafd;
+    color: #64748b;
+    font-weight: 700;
 }

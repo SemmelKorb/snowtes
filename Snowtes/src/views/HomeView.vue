@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="text-slate-500">
+    <div class="flex justify-center items-center">
       Hello World tailwind
     </div>
   </main>
