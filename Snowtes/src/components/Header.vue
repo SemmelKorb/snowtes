@@ -1,5 +1,5 @@
 <template>
-    <nav class="header">
+    <header class="header">
         This is the header
-    </nav>
+    </header>
 </template>

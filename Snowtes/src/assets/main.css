@@ -1,5 +1,5 @@
 @import 'base.css';
-@import 'content/header.css';
+@import 'content.css';
 
 @tailwind base;
 @tailwind components;
