@@ -1,6 +1,6 @@
-export default interface Note{
-    id: number,
+export default interface Note {
+    id: string,
     title: string,
-    desciption: string,
+    description: string,
     isPinned: boolean,
 }

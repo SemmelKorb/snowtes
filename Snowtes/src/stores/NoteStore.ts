@@ -4,9 +4,9 @@ import type Note from '@/types/note'
 export const useNoteStore = defineStore('NoteStore', {
     state: () => ({
         notes: [
-            {id: 3, title: 'something else', desciption: '', isPinned: true},
-            {id: 4, title: 'something elseeeeeee', desciption: '', isPinned: false},
-            {id: 7, title: 'something elseeeeeee', desciption: '', isPinned: false}
+            {id: 'b9f94d05-779b-4fb8-b8d4-69fd7c83146f', title: 'something else', description: 'aslkdkdfsakhdafkh', isPinned: true},
+            {id: 'ac7ba626-8990-4d1d-9f43-e1941c38b7c3', title: 'something else', description: 'ychhkcjhjxchxchkcx', isPinned: false},
+            {id: '98e1584e-18b8-457a-9c96-97e4e4643526', title: 'something else', description: 'öwelöaelködalkjdsklj', isPinned: false}
         ] as Note[]
     }),
     getters: {
@@ -14,7 +14,7 @@ export const useNoteStore = defineStore('NoteStore', {
             return this.notes.filter(note => note.isPinned)
         },
         getById(){
-            return (noteId: number): Note | undefined => this.notes.find(note => note.id === noteId)
+            return (noteId: string): Note | undefined => this.notes.find(note => note.id === noteId)
         }
     },
     actions: {
@@ -22,12 +22,14 @@ export const useNoteStore = defineStore('NoteStore', {
             //make a function to write the note into the database
             this.notes.push(note)
         },
-        removeNote(noteId: number){
+        removeNote(noteId: string){
+            //make a function to remove the note from the database
             this.notes = this.notes.filter(note => {
                 return note.id !== noteId
             })
         },
-        togglePin(noteId: number){
+        togglePin(noteId: string){
+            //make a function to change the pin thing in the database
             const note = this.notes.find(note => note.id === noteId)
             if(note) note.isPinned = !note.isPinned
         }
