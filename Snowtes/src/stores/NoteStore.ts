@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia'
-import type Note from '@/types/note'
+import type { Note, NoteCmd } from '@/types/note'
 
 export const useNoteStore = defineStore('NoteStore', {
     state: () => ({
@@ -18,8 +18,17 @@ export const useNoteStore = defineStore('NoteStore', {
         }
     },
     actions: {
-        addNote(note: Note){
-            //make a function to write the note into the database
+        addNote(noteCmd: NoteCmd){
+            //function to write the cmd in the database 
+            //recive uuid and klatsch into note
+
+            const note: Note = {
+                id: '',
+                title: noteCmd.title,
+                description: noteCmd.description,
+                isPinned: false
+            }
+
             this.notes.push(note)
         },
         removeNote(noteId: string){
