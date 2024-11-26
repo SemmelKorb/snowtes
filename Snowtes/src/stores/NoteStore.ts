@@ -8,7 +8,9 @@ export const useNoteStore = defineStore('NoteStore', {
             {id: 'b9f94d05-779b-4fb8-b8d4-69fd7c83146f', title: 'something else', description: 'aslkdkdfsakhdafkh', isPinned: true},
             {id: 'ac7ba626-8990-4d1d-9f43-e1941c38b7c3', title: 'something else', description: 'ychhkcjhjxchxchkcx', isPinned: false},
             {id: '98e1584e-18b8-457a-9c96-97e4e4643526', title: 'something else', description: 'öwelöaelködalkjdsklj', isPinned: false}
-        ] as Note[]
+        ] as Note[],
+        filter: '' as string,
+        page: 1 as number,
     }),
     getters: {
         getPinned(): Note[]{
@@ -16,6 +18,9 @@ export const useNoteStore = defineStore('NoteStore', {
         },
         getById(){
             return (noteId: string): Note | undefined => this.notes.find(note => note.id === noteId)
+        },
+        filterByTitle(): Note[]{
+            return this.notes.filter(note => note.title.toLowerCase().includes(this.filter.toLowerCase()))
         }
     },
     actions: {
@@ -40,7 +45,7 @@ export const useNoteStore = defineStore('NoteStore', {
         },
         updateNote(note: Note){
             const potentialDupe = this.getById(note.id)
-            if(!potentialDupe || potentialDupe.description === note.description && potentialDupe.title === note.title && potentialDupe.isPinned === note.isPinned) return
+            if(!potentialDupe || this.notes.includes(note)) return
 
             //make a function to update in the database
             this.removeNote(note.id)
@@ -50,6 +55,14 @@ export const useNoteStore = defineStore('NoteStore', {
             //make a function to update the pin thing in the database
             const note = this.notes.find(note => note.id === noteId)
             if(note) note.isPinned = !note.isPinned
+        },
+        updateFilter(expression: string){
+            this.filter = expression
+        },
+        updatePage(operator: '+' | '-'){
+            if(this.page === 1 && operator === '-') return
+            //get the information from the database what the last page is so a function -> get MaxPage
+            operator === '-' ? this.page-- : this.page++
         }
     }
 })
