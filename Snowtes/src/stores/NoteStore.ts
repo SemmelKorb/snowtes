@@ -1,5 +1,6 @@
 import {defineStore} from 'pinia'
 import type { Note, NoteCmd } from '@/types/note'
+import {v4 as uuid} from 'uuid'
 
 export const useNoteStore = defineStore('NoteStore', {
     state: () => ({
@@ -23,7 +24,7 @@ export const useNoteStore = defineStore('NoteStore', {
             //recive uuid and klatsch into note
 
             const note: Note = {
-                id: '',
+                id: uuid(),
                 title: noteCmd.title,
                 description: noteCmd.description,
                 isPinned: false
@@ -37,8 +38,16 @@ export const useNoteStore = defineStore('NoteStore', {
                 return note.id !== noteId
             })
         },
+        updateNote(note: Note){
+            const potentialDupe = this.getById(note.id)
+            if(!potentialDupe || potentialDupe.description === note.description && potentialDupe.title === note.title && potentialDupe.isPinned === note.isPinned) return
+
+            //make a function to update in the database
+            this.removeNote(note.id)
+            this.addNote(note)
+        },
         togglePin(noteId: string){
-            //make a function to change the pin thing in the database
+            //make a function to update the pin thing in the database
             const note = this.notes.find(note => note.id === noteId)
             if(note) note.isPinned = !note.isPinned
         }

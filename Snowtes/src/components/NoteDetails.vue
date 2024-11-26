@@ -1,6 +1,9 @@
 <script setup lang="ts">
     import type { PropType } from 'vue'
     import type { Note } from '@/types/note'
+    import { useNoteStore } from '@/stores/NoteStore'
+
+    const noteStore = useNoteStore()
 
     defineProps({
         note: {
@@ -16,7 +19,7 @@
         <p class="note-element">{{ note.description }}</p>
         <span class="space-x-4">
             <i class="pi pi-pencil cursor-pointer"/>
-            <i class="pi pi-trash cursor-pointer"/>
+            <i class="pi pi-trash cursor-pointer" @click="noteStore.removeNote(note.id)"/>
         </span>
     </div>
 </template>
