@@ -1,18 +1,12 @@
-<script setup lang="ts">
-    import { usePopupTriggerStore } from '@/stores/PopupTriggerStore'
-
-    const popupTriggerStore = usePopupTriggerStore()
-</script>
-
 <template>
     <div class="popup">
         <div class="popup-inner">
             <div class="popup-header">
-                <slot/>
-                <button class="pi pi-times popup-close" @click="popupTriggerStore.toggleANT"/>
+                <slot name="title"/>
+                <slot name="button"/>
             </div>
-            <div class="border-div"/>
-            <slot name="component"/>
+            <div class="border-div-black"/>
+            <slot class="mb-2 mt-4" name="component"/>
         </div>
     </div>
 </template>

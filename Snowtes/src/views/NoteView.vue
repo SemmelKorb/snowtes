@@ -1,8 +1,8 @@
 <script setup lang="ts">
     import AddNoteForm from '@/components/Note/AddNote/Form.vue'
-    import NoteDetails from '@/components/Note/NoteDetails.vue'
+    import NoteDetails from '@/components/Note/Details/Preview.vue'
     import { useNoteStore } from '@/stores/NoteStore'
-    import NoteControlBar from '@/components/Note/NoteControlBar.vue'
+    import NoteControlBar from '@/components/Note/ControlBar.vue'
 
     const noteStore = useNoteStore()
 </script>
@@ -14,13 +14,14 @@
         <div class="border-div"/>
 
         <!--Muss in im Backend geflitert werden -> wenn ein filter drinnen ist, muss auch der max page count geupdated werden + keinen filter array zurückgeben sondern den normalen notes array überschreiben-->
-
+        <!--List of notes filtered by title-->
         <NoteDetails 
             v-if="noteStore.filter !== ''"
             v-for='note in noteStore.filterByTitle' 
             :key='note.id' 
             :note='note'/>
 
+        <!--List of notes not filtered-->
         <NoteDetails 
             v-if="noteStore.filter === ''"
             v-for='note in noteStore.notes' 

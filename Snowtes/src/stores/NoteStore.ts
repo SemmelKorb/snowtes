@@ -17,6 +17,7 @@ export const useNoteStore = defineStore('NoteStore', {
         ] as Note[],
         filter: '' as string,
         page: 1 as number,
+        selectedNote: '' as string,
     }),
     getters: {
         getPinned(): Note[]{
@@ -27,6 +28,9 @@ export const useNoteStore = defineStore('NoteStore', {
         },
         filterByTitle(): Note[]{
             return this.notes.filter(note => note.title.toLowerCase().includes(this.filter.toLowerCase()))
+        },
+        getSelected(): string{
+            return this.selectedNote
         }
     },
     actions: {
@@ -55,7 +59,7 @@ export const useNoteStore = defineStore('NoteStore', {
 
             //make a function to update in the database
             this.removeNote(note.id)
-            this.addNote(note)
+            this.notes.push(note)
         },
         togglePin(noteId: string){
             //make a function to update the pin thing in the database
@@ -69,6 +73,9 @@ export const useNoteStore = defineStore('NoteStore', {
             if(this.page === 1 && operator === '-') return
             //get the information from the database what the last page is so a function -> get MaxPage
             operator === '-' ? this.page-- : this.page++
-        }
+        },
+        selectNote(id: string){
+            this.selectedNote = id
+        },
     }
 })

@@ -2,7 +2,7 @@
     background-color: var(--bg-color);
     width: 100%;
     height: 3.5rem;
-    padding: 0 0.5rem 0 0.5rem;
+    padding: 0 0.5rem;
     bottom: 0;
     position: fixed;
     display: flex;
@@ -17,7 +17,7 @@
     width: 100%;
     height: 8rem;
     margin-bottom: 2rem;
-    padding: 0 0.5rem 0 0.5rem;
+    padding: 0 0.5rem;
     font-size: 2.25rem;
     line-height: 2.5rem;
     top: 0;
@@ -30,7 +30,7 @@
 }
 
 .button {
-    padding: 2px 8px 2px 8px;
+    padding: 2px 8px;
     border-width: 2px;
     border-radius: 5px;
     border-color: var(--color-light-snow);
@@ -41,19 +41,19 @@
 }
 
 .input-field {
-    padding: 0.1rem 0.4rem 0.1rem 0.4rem;
+    padding: 0.1rem 0.4rem;
     font-weight: 500;
     border-width: 1px;
     border-radius: 5px;
     border-color: grey;
 }
 
-.note-container {
+.note-prev-container {
     max-width: 640px;
     width: 90%;
     height: 3rem;
     margin: 1rem auto 0 auto;
-    padding: 24px 24px;
+    padding: 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -61,18 +61,31 @@
     box-shadow: 2px 3px 5px grey;
 }
 
-.note-element {
+.note-prev-element {
     width: 25%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
+.note-full-container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.note-full-element {
+    text-wrap: wrap;
+    word-break: break-all;
+}
+
 .note-form {
     max-width: 640px;
     width: 90%;
-    margin: 0 auto 0 auto;
+    margin: 0 auto;
     display: flex;
+    
     flex-direction: column;
 }
 
@@ -82,6 +95,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.note-i {
+    cursor: pointer;
 }
 
 .note-i:hover{
@@ -94,6 +111,14 @@
     height: 2px;
     margin: 0 auto 2rem auto;
     background-image: linear-gradient(to right, var(--bg-color), #e5e7eb, var(--bg-color));
+}
+
+.border-div-black {
+    width: 100%;
+    height: 2px;
+    margin-bottom: 1rem;
+    background-color: grey;
+    opacity: 0.3;
 }
 
 .note-controller-container {
@@ -129,16 +154,17 @@
 .popup-inner {
     background: var(--bg-color);
     max-width: 680px;
-    margin-bottom: 8rem;
     width: 95%;
-    padding: 2rem 8px;
+    margin-bottom: 8rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
     position: relative;
     border-radius: 5px;
 }
 
 .popup-header {
     width: 90%;
-    margin: 0 auto 1rem auto;
+    margin: 0 auto 0.3rem auto;
     display: flex;
     align-items: center;
     justify-content: center;

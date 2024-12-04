@@ -18,7 +18,7 @@
         }
 
         noteStore.addNote(note)
-        //das wird aus irgendeinem grund nicht ausgeführt das popupTriggerStore
+
         popupTriggerStore.toggleANT()
 
         title.value = ''
@@ -36,7 +36,7 @@
         <label class="mt-2" for="descriptionField">
             Description
         </label>
-        <input class="input-field" type="text" name="descriptionField" id="descriptionFeil" v-model='description'>
+        <textarea class="input-field" name="descriptionField" id="descriptionFeil" v-model='description'/>
 
         <button class="button mt-4" type="submit">
             Add

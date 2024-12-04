@@ -1,8 +1,6 @@
 <script setup lang="ts">
     import { useNoteStore } from '@/stores/NoteStore'
     import { usePopupTriggerStore } from '@/stores/PopupTriggerStore'
-    import  Popup  from '@/components/Note/Popup.vue'
-    import AddNoteForm from '@/components/Note/AddNote/Form.vue'
 
     const noteStore = useNoteStore()
     const popupTriggerStore = usePopupTriggerStore()
@@ -16,10 +14,4 @@
             Add Note
         </button>
     </div>
-    <Popup v-if="popupTriggerStore.addNoteTrigger">
-         Add Note Popup
-         <template v-slot:component>
-            <AddNoteForm/>
-         </template>
-    </Popup>
 </template>
