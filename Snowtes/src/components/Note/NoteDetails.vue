@@ -18,8 +18,8 @@
         <p class="note-element">{{ note.title }}</p>
         <p class="note-element">{{ note.description }}</p>
         <span class="space-x-4">
-            <i class="pi pi-pencil cursor-pointer"/>
-            <i class="pi pi-trash cursor-pointer" @click="noteStore.removeNote(note.id)"/>
+            <i class="pi pi-pencil cursor-pointer note-i"/>
+            <i class="pi pi-trash cursor-pointer note-i" @click="noteStore.removeNote(note.id)"/>
         </span>
     </div>
 </template>

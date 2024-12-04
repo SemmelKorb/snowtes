@@ -1,12 +1,10 @@
 <script setup lang="ts">
-    import { ref } from 'vue'
-    import AddNoteForm from '@/components/AddNoteForm.vue'
-    import NoteDetails from '@/components/NoteDetails.vue'
+    import AddNoteForm from '@/components/Note/AddNote/Form.vue'
+    import NoteDetails from '@/components/Note/NoteDetails.vue'
     import { useNoteStore } from '@/stores/NoteStore'
-    import NoteControlBar from '@/components/NoteControlBar.vue'
+    import NoteControlBar from '@/components/Note/NoteControlBar.vue'
 
     const noteStore = useNoteStore()
-
 </script>
 
 <template>
@@ -14,6 +12,8 @@
         <NoteControlBar/>
 
         <div class="border-div"/>
+
+        <!--Muss in im Backend geflitert werden -> wenn ein filter drinnen ist, muss auch der max page count geupdated werden + keinen filter array zurückgeben sondern den normalen notes array überschreiben-->
 
         <NoteDetails 
             v-if="noteStore.filter !== ''"

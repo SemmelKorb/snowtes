@@ -4,7 +4,7 @@
 </script>
 
 <template>
-  <Header/>
-  <RouterView/>
-  <Footer/>
+    <Header/>
+    <RouterView class="pb-24 pt-40"/>
+    <Footer/>
 </template>

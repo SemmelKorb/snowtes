@@ -3,8 +3,8 @@
     width: 100%;
     height: 3.5rem;
     padding: 0 0.5rem 0 0.5rem;
-    position: absolute;
     bottom: 0;
+    position: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,12 +13,15 @@
 }
 
 .header {
+    background-color: var(--bg-color);
     width: 100%;
     height: 8rem;
     margin-bottom: 2rem;
     padding: 0 0.5rem 0 0.5rem;
     font-size: 2.25rem;
     line-height: 2.5rem;
+    top: 0;
+    position: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -31,6 +34,10 @@
     border-width: 2px;
     border-radius: 5px;
     border-color: var(--color-light-snow);
+}
+
+.button:hover {
+    font-weight: 800;
 }
 
 .input-field {
@@ -77,6 +84,10 @@
     justify-content: center;
 }
 
+.note-i:hover{
+    font-weight: 900;
+}
+
 .border-div {
     max-width: 840px;
     width: 100%;
@@ -100,4 +111,47 @@
     align-items: center;
     justify-content: center;
     font-size: 3rem;
+}
+
+.popup {
+    background-color: rgba(0,0,0,0.2);
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 99;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-inner {
+    background: var(--bg-color);
+    max-width: 680px;
+    margin-bottom: 8rem;
+    width: 95%;
+    padding: 2rem 8px;
+    position: relative;
+    border-radius: 5px;
+}
+
+.popup-header {
+    width: 90%;
+    margin: 0 auto 1rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+}
+
+.popup-close {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    cursor: pointer;
+}
+
+.popup-close:hover {
+    font-weight: 800;
+    font-size: 1.8rem;   
 }

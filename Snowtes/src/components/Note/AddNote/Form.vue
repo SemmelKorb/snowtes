@@ -1,9 +1,11 @@
 <script setup lang="ts">
     import { ref } from 'vue'
+    import { usePopupTriggerStore } from '@/stores/PopupTriggerStore'
     import { useNoteStore } from '@/stores/NoteStore'
     import type { NoteCmd } from '@/types/note'
 
     const noteStore = useNoteStore()
+    const popupTriggerStore = usePopupTriggerStore()
 
     const title = ref<string>('')
     const description = ref<string>('')
@@ -16,6 +18,8 @@
         }
 
         noteStore.addNote(note)
+        //das wird aus irgendeinem grund nicht ausgeführt das popupTriggerStore
+        popupTriggerStore.toggleANT()
 
         title.value = ''
         description.value = ''
