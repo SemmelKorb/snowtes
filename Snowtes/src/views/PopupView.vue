@@ -2,6 +2,7 @@
     import  Popup  from '@/components/Note/Popup.vue'
     import AddNoteForm from '@/components/Note/Add/Form.vue'
     import EditNoteForm from '@/components/Note/Edit/Form.vue'
+    import DeleteNoteForm from '@/components/Note/Delete/Form.vue'
     import NoteFullDetails from '@/components/Note/Details/Full.vue'
     import { usePopupTriggerStore } from '@/stores/PopupTriggerStore'
 
@@ -38,13 +39,13 @@
     <!--Popup for deleting a note-->
     <Popup v-if="popupTriggerStore.deleteNoteTrigger">
         <template v-slot:title>
-            
+            Delete the Note
         </template>
         <template v-slot:button>
             <button class="pi pi-times popup-close" @click="popupTriggerStore.toggleDNT"/>
         </template>
         <template v-slot:component>
-            
+            <DeleteNoteForm/>
         </template>
     </Popup>
 

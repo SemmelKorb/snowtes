@@ -17,7 +17,7 @@
     }
 
     onMounted(() => {
-        const n : Note |undefined = noteStore.getById(noteStore.getSelected)
+        const n: Note |undefined = noteStore.getById(noteStore.getSelected)
         if(!n) return
 
         note.value = {...n}

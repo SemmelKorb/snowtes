@@ -1,9 +1,10 @@
 <script setup lang="ts">
+    import type { Note } from '@/types/note'
     import { useNoteStore } from '@/stores/NoteStore'
 
     const noteStore = useNoteStore()
 
-    const note = noteStore.getById(noteStore.selectedNote)
+    const note: Note | undefined = noteStore.getById(noteStore.selectedNote)
 </script>
 
 <template>

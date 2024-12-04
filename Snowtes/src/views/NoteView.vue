@@ -1,5 +1,4 @@
 <script setup lang="ts">
-    import AddNoteForm from '@/components/Note/AddNote/Form.vue'
     import NoteDetails from '@/components/Note/Details/Preview.vue'
     import { useNoteStore } from '@/stores/NoteStore'
     import NoteControlBar from '@/components/Note/ControlBar.vue'

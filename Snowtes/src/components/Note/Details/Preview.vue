@@ -14,14 +14,19 @@
         }
     })
 
-    const showFullDetails = (id : string) => {
+    const showFullDetails = (id: string) => {
         noteStore.selectNote(id)
         popupTriggerStore.toggleSFNDT()
     }
 
-    const editNoteDetails = (id : string) => {
+    const editNoteDetails = (id: string) => {
         noteStore.selectNote(id)
         popupTriggerStore.toggleENT()
+    }
+
+    const deleteNote = (id: string) => {
+        noteStore.selectNote(id)
+        popupTriggerStore.toggleDNT()
     }
 </script>
 
@@ -33,7 +38,7 @@
             <i class="pi pi-thumbtack note-i pin" :class="{active: note.isPinned}" @click="noteStore.togglePin(note.id)"/>
             <i class="pi pi-info-circle note-i" @click="showFullDetails(note.id)"/>
             <i class="pi pi-pencil note-i" @click="editNoteDetails(note.id)"/>
-            <i class="pi pi-trash note-i" @click="noteStore.removeNote(note.id)"/>
+            <i class="pi pi-trash note-i" @click="deleteNote(note.id)"/>
         </span>
     </div>
 </template>
