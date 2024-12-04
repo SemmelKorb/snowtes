@@ -105,6 +105,10 @@
     font-weight: 900;
 }
 
+.pin.active {
+    color: red;
+}
+
 .border-div {
     max-width: 840px;
     width: 100%;

@@ -30,7 +30,7 @@
         <p class="note-prev-element">{{ note.title }}</p>
         <p class="note-prev-element">{{ note.description }}</p>
         <span class="space-x-4">
-            <i class="pi pi-thumbtack note-i" @click="noteStore.togglePin(note.id)"/>
+            <i class="pi pi-thumbtack note-i pin" :class="{active: note.isPinned}" @click="noteStore.togglePin(note.id)"/>
             <i class="pi pi-info-circle note-i" @click="showFullDetails(note.id)"/>
             <i class="pi pi-pencil note-i" @click="editNoteDetails(note.id)"/>
             <i class="pi pi-trash note-i" @click="noteStore.removeNote(note.id)"/>
