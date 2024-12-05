@@ -5,3 +5,7 @@ body {
     color: var(--color-light-snow);
     font-weight: 700;
 }
+
+main {
+    @apply flex-1 overflow-y-auto;
+}

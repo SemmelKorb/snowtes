@@ -6,13 +6,9 @@
 
 <template>
   <div class="flex flex-col h-screen">
-    <div class="h-full">
       <Header/>
-      <div class="flex-1">
-        <RouterView/>
-        <PopupView/>
-      </div>
+      <RouterView/>
       <Footer/>
-    </div>
+      <PopupView/>
   </div>
 </template>

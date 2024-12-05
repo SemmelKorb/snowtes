@@ -7,15 +7,13 @@
 </script>
 
 <template>
+    <NoteControlBar/>
+    <div class="border-div"/>
     <main>
-        <NoteControlBar/>
-
-        <div class="border-div"/>
-
         <!--Muss in im Backend geflitert werden -> wenn ein filter drinnen ist, muss auch der max page count geupdated werden + keinen filter array zurückgeben sondern den normalen notes array überschreiben-->
         <!--List of notes filtered by title-->
         <!--TODO: Es muss ein extra container für die notes gemacht werden und in diesem kann man für die notes scrollen bedeutet die obere notes controll bar bleibt immer an der selben stelle-->
-        <div class="overflow-y-auto">
+        <div class="pb-10">
             <NoteDetails 
                 v-if="noteStore.filter !== ''"
                 v-for='note in noteStore.filterByTitle' 
