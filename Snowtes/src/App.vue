@@ -5,8 +5,14 @@
 </script>
 
 <template>
-    <Header/>
-    <RouterView class="pb-24 pt-40"/>
-    <PopupView/>
-    <Footer/>
+  <div class="flex flex-col h-screen">
+    <div class="h-full">
+      <Header/>
+      <div class="flex-1">
+        <RouterView/>
+        <PopupView/>
+      </div>
+      <Footer/>
+    </div>
+  </div>
 </template>

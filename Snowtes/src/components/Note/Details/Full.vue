@@ -9,10 +9,12 @@
 
 <template>
     <div class="note-full-container" v-if="note">
-            <p class="note-full-element text-xl">
+            <!--Zeichenlimit von 30 Zeichen setzen-->
+            <p class="note-full-element text-xl mb-2">
                 {{ note.title }}
             </p>
-            <p class="note-full-element">
+            <!--Ab einer anzeige von 300 zeichen einen Container machen, in dem man den text scrollen kann-->
+            <p class="note-full-element max-h-[300px] overflow-y-auto">
                 {{ note.description }}
             </p>
     </div>

@@ -14,17 +14,20 @@
 
         <!--Muss in im Backend geflitert werden -> wenn ein filter drinnen ist, muss auch der max page count geupdated werden + keinen filter array zurückgeben sondern den normalen notes array überschreiben-->
         <!--List of notes filtered by title-->
-        <NoteDetails 
-            v-if="noteStore.filter !== ''"
-            v-for='note in noteStore.filterByTitle' 
-            :key='note.id' 
-            :note='note'/>
+        <!--TODO: Es muss ein extra container für die notes gemacht werden und in diesem kann man für die notes scrollen bedeutet die obere notes controll bar bleibt immer an der selben stelle-->
+        <div class="overflow-y-auto">
+            <NoteDetails 
+                v-if="noteStore.filter !== ''"
+                v-for='note in noteStore.filterByTitle' 
+                :key='note.id' 
+                :note='note'/>
 
-        <!--List of notes not filtered-->
-        <NoteDetails 
-            v-if="noteStore.filter === ''"
-            v-for='note in noteStore.notes' 
-            :key='note.id' 
-            :note='note'/>
+            <!--List of notes not filtered-->
+            <NoteDetails 
+                v-if="noteStore.filter === ''"
+                v-for='note in noteStore.notes' 
+                :key='note.id' 
+                :note='note'/>
+        </div>
     </main>
 </template>
