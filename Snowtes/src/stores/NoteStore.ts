@@ -4,19 +4,9 @@ import { v4 as uuid } from 'uuid'
 
 export const useNoteStore = defineStore('NoteStore', {
     state: () => ({
-        notes: [
-            {id: 'b9f94d05-779b-4fb8-b8d4-69fd7c83146f', title: 'something else', description: 'aslkdkdfsakhdafkh', isPinned: true},
-            {id: 'ac7ba626-8990-4d1d-9f43-e1941c38b7c3', title: 'something else', description: 'ychhkcjhjxchxchkcx', isPinned: false},
-            {id: '98e1584e-18b8-457a-9c96-97e4e4643526', title: 'something else', description: 'öwelöaelködalkjdsklj', isPinned: false},
-            {id: '97e1584e-18b8-457a-9c96-97e4e4643526', title: 'something else', description: 'öwelöaelködalkjdsklj', isPinned: false},
-            {id: '88e1584e-18b8-457a-9c96-97e4e4643526', title: 'something else', description: 'öwelöaelködalkjdsklj', isPinned: false},
-            {id: '98e1584e-18b8-457a-9c96-97e4e4640526', title: 'something else', description: 'öwelöaelködalkjdsklj', isPinned: false},
-            {id: '98e1584e-18b8-437a-9c96-97e4e4643526', title: 'what is happening', description: 'öwelöaelködalkjdsklj', isPinned: false},
-            {id: '98e1584e-12b8-457a-9c96-97e4e4643526', title: 'why why why', description: 'öwelöaelködalkjdsklj', isPinned: false},
-            {id: '98e1584e-18b8-457a-9c96-a7e4e4643526', title: 'some other information', description: 'öwelöaelködalkjdsklj', isPinned: false}
-        ] as Note[],
+        notes: [] as Note[],
         filter: '' as string,
-        page: 1 as number,
+        page: 0 as number,
         selectedNote: '' as string,
     }),
     getters: {
@@ -34,6 +24,16 @@ export const useNoteStore = defineStore('NoteStore', {
         }
     },
     actions: {
+        async setNotes(){
+            try {
+                const f = await fetch(`http://localhost:3000/notes/${this.page}`)
+                const res = await f.json()
+                this.notes.push(...res)
+            } catch (error) {
+                console.log(error)
+                return
+            }   
+        },
         addNote(noteCmd: NoteCmd){
             //function to write the cmd in the database 
             //recive uuid and klatsch into note
@@ -42,18 +42,25 @@ export const useNoteStore = defineStore('NoteStore', {
                 id: uuid(),
                 title: noteCmd.title,
                 description: noteCmd.description,
-                isPinned: false
+                isPinned: false,
+                creationDate: ''
             }
 
             this.notes.push(note)
         },
-        removeNote(noteId: string){
-            //make a function to remove the note from the database
+        async removeNote(noteId: string){
+            //try {
+            //    const res = await fetch(`http://localhost:3000/delete/${noteId}`);
+            //} catch (error) {
+            //    console.log(error)
+            //    return
+            //}
+
             this.notes = this.notes.filter(note => {
                 return note.id !== noteId
             })
         },
-        updateNote(note: Note){
+        async updateNote(note: Note){
             const potentialDupe = this.getById(note.id)
             if(!potentialDupe || this.notes.includes(note)) return
 
@@ -61,7 +68,7 @@ export const useNoteStore = defineStore('NoteStore', {
             this.removeNote(note.id)
             this.notes.push(note)
         },
-        togglePin(noteId: string){
+        async togglePin(noteId: string){
             //make a function to update the pin thing in the database
             const note = this.notes.find(note => note.id === noteId)
             if(note) note.isPinned = !note.isPinned
@@ -70,7 +77,7 @@ export const useNoteStore = defineStore('NoteStore', {
             this.filter = expression
         },
         updatePage(operator: '+' | '-'){
-            if(this.page === 1 && operator === '-') return
+            if(this.page === 0 && operator === '-') return
             //get the information from the database what the last page is so a function -> get MaxPage
             operator === '-' ? this.page-- : this.page++
         },

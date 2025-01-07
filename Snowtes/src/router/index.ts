@@ -25,7 +25,7 @@ const router = createRouter({
     {
       path: '/:patchMatch(.*)*',
       name: 'not found page',
-      component: NotFoundView
+      redirect: '/notes'
     },
   ],
 })

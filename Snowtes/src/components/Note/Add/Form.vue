@@ -36,7 +36,7 @@
         <label class="mt-2" for="descriptionField">
             Description
         </label>
-        <textarea class="input-field" name="descriptionField" id="descriptionFeil" v-model='description'/>
+        <textarea class="input-field h-32" name="descriptionField" id="descriptionField" v-model='description'/>
 
         <button class="button mt-4" type="submit">
             Add

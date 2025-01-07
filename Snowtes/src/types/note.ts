@@ -3,6 +3,7 @@ export interface Note {
     title: string,
     description: string,
     isPinned: boolean,
+    creationDate: string
 }
 
 export interface NoteCmd {

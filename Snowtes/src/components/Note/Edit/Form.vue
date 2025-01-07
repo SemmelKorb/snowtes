@@ -34,14 +34,14 @@
         <label class="mt-2" for="descriptionField">
             Description
         </label>
-        <textarea class="input-field"  name="descriptionField" id="descriptionFeil" v-model='note.description'/>
+        <textarea class="input-field h-32"  name="descriptionField" id="descriptionField" v-model='note.description'/>
 
         <label class="mt-2" for="isPinnedField">
             Pinned
         </label>
         <!--Es wird nicht der boolean beim einfügen übergeben-->
         <div class="justify-start items-start w-full">
-            <input class="input-field mr-auto w-min" type="checkbox" v-model='note.isPinned'/>
+            <input class="input-field mr-auto w-min" type="checkbox" name="isPinnedField" id="isPinnedField" v-model='note.isPinned'/>
         </div>
 
         <button class="button mt-4" type="submit">

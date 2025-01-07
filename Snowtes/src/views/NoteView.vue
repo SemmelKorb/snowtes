@@ -2,8 +2,13 @@
     import NoteDetails from '@/components/Note/Details/Preview.vue'
     import { useNoteStore } from '@/stores/NoteStore'
     import NoteControlBar from '@/components/Note/ControlBar.vue'
+    import { onMounted } from 'vue'
 
     const noteStore = useNoteStore()
+
+    onMounted(() => {
+        noteStore.setNotes()
+    })
 </script>
 
 <template>

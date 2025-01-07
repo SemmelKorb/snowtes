@@ -1,4 +1,5 @@
 <script setup lang="ts">
+    import { ref } from 'vue'
     import  Popup  from '@/components/Note/Popup.vue'
     import AddNoteForm from '@/components/Note/Add/Form.vue'
     import EditNoteForm from '@/components/Note/Edit/Form.vue'
