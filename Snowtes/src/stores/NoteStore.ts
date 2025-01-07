@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { Note, NoteCmd } from '@/types/note'
+import type { Note, NoteCmd, FetchNote } from '@/types/note'
 import { v4 as uuid } from 'uuid'
 
 export const useNoteStore = defineStore('NoteStore', {
@@ -27,8 +27,17 @@ export const useNoteStore = defineStore('NoteStore', {
         async setNotes(){
             try {
                 const f = await fetch(`http://localhost:3000/notes/${this.page}`)
-                const res = await f.json()
-                this.notes.push(...res)
+                const res : FetchNote[] = await f.json()
+                res.forEach(e => {
+                    const note: Note = {
+                        id: e.uuid,
+                        title: e.title,
+                        description: e.content,
+                        isPinned: e.isfav,
+                        creationDate: e.creationdate
+                    }
+                    this.notes.push(note)
+                });
             } catch (error) {
                 console.log(error)
                 return
@@ -49,12 +58,14 @@ export const useNoteStore = defineStore('NoteStore', {
             this.notes.push(note)
         },
         async removeNote(noteId: string){
-            //try {
-            //    const res = await fetch(`http://localhost:3000/delete/${noteId}`);
-            //} catch (error) {
-            //    console.log(error)
-            //    return
-            //}
+            try {
+                const res = await fetch(`http://localhost:3000/delete/${noteId}`, {
+                    method: 'DELETE'
+                });
+            } catch (error) {
+                console.log(error)
+                return
+            }
 
             this.notes = this.notes.filter(note => {
                 return note.id !== noteId
