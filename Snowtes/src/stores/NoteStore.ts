@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import type { Note, NoteCmd, FetchNote } from '@/types/note'
-import { v4 as uuid } from 'uuid'
 
 export const useNoteStore = defineStore('NoteStore', {
     state: () => ({
@@ -26,9 +25,9 @@ export const useNoteStore = defineStore('NoteStore', {
     actions: {
         async setNotes(){
             try {
-                const f = await fetch(`http://localhost:3000/notes/${this.page}`)
-                const res : FetchNote[] = await f.json()
-                res.forEach(e => {
+                const res = await fetch(`http://localhost:3000/notes/${this.page}`)
+                const data : FetchNote[] = await res.json()
+                data.forEach(e => {
                     const note: Note = {
                         id: e.uuid,
                         title: e.title,
@@ -43,19 +42,30 @@ export const useNoteStore = defineStore('NoteStore', {
                 return
             }   
         },
-        addNote(noteCmd: NoteCmd){
-            //function to write the cmd in the database 
-            //recive uuid and klatsch into note
-            //Beim hinzufügen wenn die notes die maximale anzahl pro seite erreicht haben auf die nächste seite irgendwie pushen...
-            const note: Note = {
-                id: uuid(),
-                title: noteCmd.title,
-                description: noteCmd.description,
-                isPinned: false,
-                creationDate: ''
-            }
+        async addNote(noteCmd: NoteCmd){
+            try {
+                const res = await fetch('http://localhost:3000/note', {
+                    method: 'POST',
+                    headers: {'Content-Type':'application/json'},
+                    body: JSON.stringify({
+                        title: noteCmd.title,
+                        content: noteCmd.description
+                    })
+                })
+                const data = await res.json()
 
-            this.notes.push(note)
+                const note: Note = {
+                    id: data.id,
+                    title: noteCmd.title,
+                    description: noteCmd.description,
+                    isPinned: false,
+                    creationDate: data.creationdate
+                }
+
+                this.notes.push(note)
+            } catch (error) {
+                return
+            }
         },
         async removeNote(noteId: string){
             try {
@@ -86,7 +96,6 @@ export const useNoteStore = defineStore('NoteStore', {
                     })
                 })
             } catch (error) {
-                console.log(error)
                 return
             }
 
