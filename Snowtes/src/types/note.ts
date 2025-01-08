@@ -3,7 +3,8 @@ export interface Note {
     title: string,
     description: string,
     isPinned: boolean,
-    creationDate: string
+    creationDate: string,
+    //update date irgendwann hier und in db hinzufügen
 }
 
 export interface NoteCmd {
@@ -16,5 +17,5 @@ export interface FetchNote {
     title: string,
     content: string,
     isfav: boolean,
-    creationdate: string
+    creationdate: string,
 }

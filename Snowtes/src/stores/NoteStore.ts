@@ -63,7 +63,6 @@ export const useNoteStore = defineStore('NoteStore', {
                     method: 'DELETE'
                 });
             } catch (error) {
-                console.log(error)
                 return
             }
 
@@ -72,12 +71,28 @@ export const useNoteStore = defineStore('NoteStore', {
             })
         },
         async updateNote(note: Note){
-            const potentialDupe = this.getById(note.id)
-            if(!potentialDupe || this.notes.includes(note)) return
+            const currentNote = this.getById(note.id)
+            if(!currentNote || currentNote.isPinned == note.isPinned && currentNote.description == note.description && currentNote.title == note.title) return
 
-            //make a function to update in the database
-            this.removeNote(note.id)
-            this.notes.push(note)
+            try {
+                const res = await fetch('http://localhost:3000/note', {
+                    method: 'PUT',
+                    headers: {'Content-Type':'application/json'},
+                    body: JSON.stringify({
+                        noteId: note.id,
+                        title: note.title,
+                        content: note.description,
+                        isFav: note.isPinned
+                    })
+                })
+            } catch (error) {
+                console.log(error)
+                return
+            }
+
+            currentNote.title = note.title
+            currentNote.description = note.description
+            currentNote.isPinned = note.isPinned
         },
         async togglePin(noteId: string){
             //make a function to update the pin thing in the database
