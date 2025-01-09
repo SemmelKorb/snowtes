@@ -38,7 +38,7 @@ export const useNoteStore = defineStore('NoteStore', {
                     this.notes.push(note)
                 });
             } catch (error) {
-                console.log(error)
+                alert("Something went wrong while fetching a note")
                 return
             }   
         },
@@ -64,6 +64,7 @@ export const useNoteStore = defineStore('NoteStore', {
 
                 this.notes.push(note)
             } catch (error) {
+                alert('Something went wrong while adding a note')
                 return
             }
         },
@@ -73,6 +74,7 @@ export const useNoteStore = defineStore('NoteStore', {
                     method: 'DELETE'
                 });
             } catch (error) {
+                alert('Something went wrong while removing a note')
                 return
             }
 
@@ -96,6 +98,7 @@ export const useNoteStore = defineStore('NoteStore', {
                     })
                 })
             } catch (error) {
+                alert('Something went wrong while updating a note')
                 return
             }
 

@@ -6,8 +6,6 @@ export const usePopupTriggerStore = defineStore('PopupTriggerStore', {
         editNoteTrigger: false as boolean,
         deleteNoteTrigger: false as boolean,
         showFullNoteDetailsTrigger: false as boolean,
-        errorMessageTrigger: false as boolean,
-        errorMessage: '' as string,
     }),
     actions: {
         toggleANT(){
@@ -22,11 +20,5 @@ export const usePopupTriggerStore = defineStore('PopupTriggerStore', {
         toggleSFNDT(){
             this.showFullNoteDetailsTrigger = !this.showFullNoteDetailsTrigger
         },
-        toggleEMT(){
-            this.errorMessageTrigger != this.showFullNoteDetailsTrigger
-        },
-        setEM(message: string){
-            this.errorMessage = message
-        }
     }
 })
